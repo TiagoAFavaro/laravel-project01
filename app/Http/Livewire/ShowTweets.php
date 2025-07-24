@@ -16,4 +16,21 @@ class ShowTweets extends Component
             'tweets' => $tweets
         ]);
     }
+
+    public function create()
+    {
+        if ($this->message == null) {
+            return response()->json([
+                'erro' => 'oooooo karaiooo',
+            ]);
+
+        }
+
+        Tweet::create([
+            'content' => $this->message,
+            'user_id' => 9,
+        ]);
+
+        $this->message = '';
+    }
 }
