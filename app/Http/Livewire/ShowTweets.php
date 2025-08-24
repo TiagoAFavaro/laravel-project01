@@ -5,9 +5,18 @@ namespace App\Http\Livewire;
 use App\Models\Tweet;
 use Livewire\Component;
 
+use function Laravel\Prompts\error;
+
 class ShowTweets extends Component
 {
-    public $message = 'Apenas um teste';
+    public $message = '';
+
+    public $usuario = '';
+
+    protected $rules = [
+        'message' => 'required|min:3|max:255',
+        'usuario' => 'required|integer|exists:users,id'
+    ];
 
     public function render()
     {
@@ -19,18 +28,14 @@ class ShowTweets extends Component
 
     public function create()
     {
-        if ($this->message == null) {
-            return response()->json([
-                'erro' => 'oooooo karaiooo',
-            ]);
-
-        }
+        $this -> validate();
 
         Tweet::create([
             'content' => $this->message,
-            'user_id' => 9,
+            'user_id' => $this->usuario
         ]);
 
         $this->message = '';
     }
+
 }
