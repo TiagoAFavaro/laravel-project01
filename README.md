@@ -1,5 +1,5 @@
 - LARATWEETS
-    A simnple social media app inspired by Twitter.
+    A simple social media app inspired by Twitter.
 
 ## Environment (via Docker / Laravel Sail)
 - PHP 8.4.11
