@@ -8,6 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('show-tweets', ShowTweets::class);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
