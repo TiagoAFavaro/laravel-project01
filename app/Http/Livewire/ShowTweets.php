@@ -4,11 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Tweet;
 use Livewire\Component;
-
-use function Laravel\Prompts\error;
+use Livewire\WithPagination;
 
 class ShowTweets extends Component
 {
+    use WithPagination;
+
     public $message = '';
 
     public $usuario = '';
@@ -20,7 +21,7 @@ class ShowTweets extends Component
 
     public function render()
     {
-        $tweets = Tweet::with('user')->get();
+        $tweets = Tweet::with('user')->paginate(2);
         return view('livewire.show-tweets', [
             'tweets' => $tweets
         ]);
